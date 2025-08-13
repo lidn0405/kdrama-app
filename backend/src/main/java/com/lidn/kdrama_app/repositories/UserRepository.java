@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.lidn.kdrama_app.models.User;
 
-public interface UserRepository extends JpaRepository<Long, User>{
+public interface UserRepository extends JpaRepository<User, Long>{
     
 }

@@ -23,6 +23,6 @@ public class Review {
     @ManyToOne
     @JoinColumn(name = "drama_ids")
     private Drama drama;
-    private String review_text;
+    private String reviewText;
 
 }

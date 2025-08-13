@@ -1,5 +1,6 @@
 package com.lidn.kdrama_app.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Entity;
@@ -22,6 +23,6 @@ public class Drama {
     private String description;
 
     @OneToMany(mappedBy = "drama")
-    private List<Review> dramaReviews;
+    private List<Review> dramaReviews = new ArrayList<>();
     
 }

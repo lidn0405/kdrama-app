@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.lidn.kdrama_app.models.Review;
 
-public interface ReviewRepository extends JpaRepository<Long, Review>{
+public interface ReviewRepository extends JpaRepository<Review, Long>{
     
 }

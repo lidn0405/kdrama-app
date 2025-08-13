@@ -1,5 +1,6 @@
 package com.lidn.kdrama_app.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.lidn.kdrama_app.enums.Role;
@@ -22,7 +23,7 @@ public class User {
     private String password;
 
     @OneToMany(mappedBy = "user")
-    private List<Review> userReviews;
+    private List<Review> userReviews = new ArrayList<>();
 
     public User() {}
 
@@ -53,6 +54,14 @@ public class User {
         return this.password;
     }
 
+    public List<Review> getUserReviews() {
+        return this.userReviews;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public void setRole(Role role) {
         this.role = role;
     }
@@ -63,5 +72,9 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public void setUserReviews(List<Review> userReviews) {
+        this.userReviews = userReviews;
     }
 }
