@@ -3,6 +3,8 @@ package com.lidn.kdrama_app.models;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.lidn.kdrama_app.models.reviews.Review;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;

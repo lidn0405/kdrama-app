@@ -7,7 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.lidn.kdrama_app.dto.DramaDto;
 import com.lidn.kdrama_app.models.Drama;
-import com.lidn.kdrama_app.models.Review;
+import com.lidn.kdrama_app.models.reviews.Review;
+import com.lidn.kdrama_app.models.reviews.ReviewKey;
 import com.lidn.kdrama_app.repositories.DramaRepository;
 import com.lidn.kdrama_app.repositories.ReviewRepository;
 
@@ -46,20 +47,17 @@ public class DramaServiceImplementation implements DramaService {
 
         drama.setName(dramaDto.getName());
         drama.setDescription(dramaDto.getDescription());
-
-        List<Review> reviews = reviewRepository.findAllById(dramaDto.getDramaReviews());
-        drama.setDramaReviews(reviews);
         Drama savedDrama = dramaRepository.save(drama);
         return new DramaDto(savedDrama);
     }
+
+    // TODO: Create update service to update drama's reviews
 
     @Override
     public DramaDto createDrama(DramaDto dramaDto) {
         Drama newDrama = new Drama();
         newDrama.setName(dramaDto.getName());
         newDrama.setDescription(dramaDto.getDescription());
-        List<Review> reviews = reviewRepository.findAllById(dramaDto.getDramaReviews());
-        newDrama.setDramaReviews(reviews);
         Drama savedDrama = dramaRepository.save(newDrama);
         return new DramaDto(savedDrama);
     }

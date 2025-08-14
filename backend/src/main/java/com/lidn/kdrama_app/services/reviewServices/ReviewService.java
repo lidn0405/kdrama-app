@@ -6,8 +6,8 @@ import com.lidn.kdrama_app.dto.ReviewDto;
 
 public interface ReviewService {
     List<ReviewDto> getReviews();
-    ReviewDto getReview(Long id);
-    ReviewDto updateReview(Long id, ReviewDto reviewDto);
+    ReviewDto getReview(Long userId, Long dramaId);
+    ReviewDto updateReview(Long userId, Long dramaId, ReviewDto reviewDto);
     ReviewDto creatReview(ReviewDto reviewDto);
-    void deleteReview(Long id);
+    void deleteReview(Long userId, Long dramaId);
 }

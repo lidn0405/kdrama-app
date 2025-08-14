@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.lidn.kdrama_app.enums.Role;
+import com.lidn.kdrama_app.models.reviews.Review;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

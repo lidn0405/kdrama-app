@@ -8,8 +8,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.lidn.kdrama_app.dto.UserDto;
 import com.lidn.kdrama_app.enums.Role;
-import com.lidn.kdrama_app.models.Review;
 import com.lidn.kdrama_app.models.User;
+import com.lidn.kdrama_app.models.reviews.Review;
+import com.lidn.kdrama_app.models.reviews.ReviewKey;
 import com.lidn.kdrama_app.repositories.ReviewRepository;
 import com.lidn.kdrama_app.repositories.UserRepository;
 
@@ -48,9 +49,6 @@ public class UserServiceImplementation implements UserService {
         }
         user.setUsername(userDto.getUsername());
         user.setPassword(userDto.getPassword());
-
-        List<Review> userReviews = reviewRepository.findAllById(userDto.getUserReviewIds());
-        user.setUserReviews(userReviews);
         UserDto savedUser = new UserDto(userRepository.save(user));
 
         return savedUser;
@@ -69,13 +67,12 @@ public class UserServiceImplementation implements UserService {
 
         user.setUsername(userDto.getUsername());
         user.setPassword(userDto.getPassword());
-        List<Review> userReviews = reviewRepository.findAllById(userDto.getUserReviewIds());
-        user.setUserReviews(userReviews);
-
         UserDto savedUser = new UserDto(userRepository.save(user));
         return savedUser;
     }
 
+    // TODO: Create update service to update user's reviews
+    
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
     }

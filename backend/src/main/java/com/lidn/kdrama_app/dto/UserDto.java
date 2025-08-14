@@ -3,20 +3,18 @@ package com.lidn.kdrama_app.dto;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.springframework.context.support.BeanDefinitionDsl.Role;
-
+import com.lidn.kdrama_app.enums.Role;
 import com.lidn.kdrama_app.models.User;
 
-import jakarta.persistence.Id;
 
 public class UserDto {
-    @Id
     private Long id;
     private String role;
     private String username;
     private String email;
     private String password;
-    private List<Long> userReviewIds;
+    // Contains drama ids for composite key
+    private List<Long> dramaReviews;
 
     public UserDto() {}
 
@@ -25,8 +23,8 @@ public class UserDto {
         this.username = user.getUsername();
         this.email = user.getEmail();
         this.password = user.getPassword();
-        this.userReviewIds = user.getUserReviews().stream()
-            .map((review) -> review.getId())
+        this.dramaReviews = user.getUserReviews().stream()
+            .map((review) -> review.getId().getDramaId())
             .collect(Collectors.toList());
     }
 
@@ -50,8 +48,8 @@ public class UserDto {
         return this.password;
     }
 
-    public List<Long> getUserReviewIds() {
-        return this.userReviewIds;
+    public List<Long> getDramaReviews() {
+        return this.dramaReviews;
     }
 
     public void setRole(String role) {
@@ -61,6 +59,7 @@ public class UserDto {
             this.role = role;
         } catch (Exception e) {
             System.out.println("Error setting role");
+            throw new IllegalArgumentException("Role not found with name: " + role);
         }
     }
 
@@ -76,8 +75,8 @@ public class UserDto {
         this.password = password;
     }
 
-    public void setUserReviewIds(List<Long> userReviewIds) {
-        this.userReviewIds = userReviewIds;
+    public void setUserReviewIds(List<Long> dramaReviews) {
+        this.dramaReviews = dramaReviews;
     }
 
 }

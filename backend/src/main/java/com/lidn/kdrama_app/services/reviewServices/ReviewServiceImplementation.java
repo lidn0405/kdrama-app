@@ -7,8 +7,9 @@ import org.springframework.stereotype.Service;
 
 import com.lidn.kdrama_app.dto.ReviewDto;
 import com.lidn.kdrama_app.models.Drama;
-import com.lidn.kdrama_app.models.Review;
 import com.lidn.kdrama_app.models.User;
+import com.lidn.kdrama_app.models.reviews.Review;
+import com.lidn.kdrama_app.models.reviews.ReviewKey;
 import com.lidn.kdrama_app.repositories.DramaRepository;
 import com.lidn.kdrama_app.repositories.ReviewRepository;
 import com.lidn.kdrama_app.repositories.UserRepository;
@@ -37,7 +38,8 @@ public class ReviewServiceImplementation implements ReviewService{
     }
 
     @Override
-    public ReviewDto getReview(Long id) {
+    public ReviewDto getReview(Long userId, Long dramaId) {
+        ReviewKey id = new ReviewKey(userId, dramaId);
         Review review = reviewRepository.findById(id)
             .orElseThrow(() -> new EntityNotFoundException("Review not found with id: " + id));
 
@@ -45,11 +47,13 @@ public class ReviewServiceImplementation implements ReviewService{
     }
 
     @Override
-    public ReviewDto updateReview(Long id, ReviewDto reviewDto) {
+    public ReviewDto updateReview(Long userId, Long dramaId, ReviewDto reviewDto) {
+        ReviewKey id = new ReviewKey(userId, dramaId);
         Review review = reviewRepository.findById(id)
             .orElseThrow(() -> new EntityNotFoundException("Review not found with id: " + id));
 
         review.setReviewText(reviewDto.getReviewText());
+        review.setRating(review.getRating());
         Review savedReview = reviewRepository.save(review);
         return new ReviewDto(savedReview);
     }
@@ -58,6 +62,7 @@ public class ReviewServiceImplementation implements ReviewService{
     public ReviewDto creatReview(ReviewDto reviewDto) {
         Review newReview = new Review();
         newReview.setReviewText(reviewDto.getReviewText());
+        newReview.setRating(reviewDto.getRating());
         User user = userRepository.findById(reviewDto.getUser_id())
             .orElseThrow(() -> new EntityNotFoundException("User not found with id: " + reviewDto.getUser_id()));
         newReview.setUser(user);
@@ -71,7 +76,8 @@ public class ReviewServiceImplementation implements ReviewService{
     }
 
     @Override
-    public void deleteReview(Long id) {
+    public void deleteReview(Long userId, Long dramaId) {
+        ReviewKey id = new ReviewKey(userId, dramaId);
         reviewRepository.deleteById(id);
     }
     
