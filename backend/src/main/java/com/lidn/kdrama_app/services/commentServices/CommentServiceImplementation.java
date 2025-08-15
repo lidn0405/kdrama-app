@@ -3,6 +3,8 @@ package com.lidn.kdrama_app.services.commentServices;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.stereotype.Service;
+
 import com.lidn.kdrama_app.dto.CommentDto;
 import com.lidn.kdrama_app.models.Comment;
 import com.lidn.kdrama_app.models.User;
@@ -14,6 +16,7 @@ import com.lidn.kdrama_app.repositories.UserRepository;
 
 import jakarta.persistence.EntityNotFoundException;
 
+@Service
 public class CommentServiceImplementation implements CommentService{
     CommentRepository commentRepository;
     UserRepository userRepository;

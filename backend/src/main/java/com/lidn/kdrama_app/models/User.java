@@ -26,6 +26,9 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Review> userReviews = new ArrayList<>();
 
+    @OneToMany(mappedBy = "user")
+    private List<Comment> userComments = new ArrayList<>();
+
     public User() {}
 
     public User(Role role, String username, String email, String password) {

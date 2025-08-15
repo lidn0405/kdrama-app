@@ -25,6 +25,5 @@ public class Drama {
     private String description;
 
     @OneToMany(mappedBy = "drama")
-    private List<Review> dramaReviews = new ArrayList<>();
-    
+    private List<Review> dramaReviews = new ArrayList<>();;
 }
