@@ -10,7 +10,6 @@ import com.lidn.kdrama_app.models.User;
 
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToMany;
@@ -47,6 +46,8 @@ public class Review {
     private int rating;
 
     public Review(User user, Drama drama, String reviewText, int rating) {
+        ReviewKey reviewKey = new ReviewKey(user.getId(), drama.getId());
+        this.id = reviewKey;
         this.user = user;
         this.drama = drama;
         this.reviewText = reviewText;

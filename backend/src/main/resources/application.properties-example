@@ -1,3 +1,5 @@
+server.port=8080
+
 spring.application.name=backend
 spring.jpa.hibernate.ddl-auto=update
 spring.datasource.url=jdbc:postgresql://localhost:5432/mydatabase
@@ -5,3 +7,6 @@ spring.datasource.username=
 spring.datasource.password=
 spring.datasource.driver-class-name=com.postgresql.cj.jdbc.Driver
 spring.jpa.show-sql: true
+
+spring.security.oauth2.client.registration.google.client-id=
+spring.security.oauth2.client.registration.google.client-secret=

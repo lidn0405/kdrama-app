@@ -26,4 +26,9 @@ public class Drama {
 
     @OneToMany(mappedBy = "drama")
     private List<Review> dramaReviews = new ArrayList<>();;
+
+    public Drama(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
 }

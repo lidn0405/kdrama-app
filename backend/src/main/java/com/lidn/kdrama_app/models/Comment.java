@@ -34,4 +34,12 @@ public class Comment {
     private Long parentId;
     private String commentText;
     private int votes;
+
+    public Comment(User user, Review review, Long parentId, String commentText, int votes) {
+        this.user = user;
+        this.review = review;
+        this.parentId = parentId;
+        this.commentText = commentText;
+        this.votes = votes;
+    }
 }
