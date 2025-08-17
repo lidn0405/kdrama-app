@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 @RequestMapping("/api/user")
@@ -25,9 +27,15 @@ public class UserController {
     }
 
     @GetMapping("/")
-    public List<UserDto> getUsers() {
-        return userService.getUsers();
+    public String getMethodName(@RequestParam String param) {
+        return new String();
     }
+    
+
+    // @GetMapping("/")
+    // public List<UserDto> getUsers() {
+    //     return userService.getUsers();
+    // }
 
     @GetMapping("/{id}")
     public UserDto getUser(@PathVariable Long id) {
