@@ -48,7 +48,7 @@ public class UserServiceImplementation implements UserService {
             throw new IllegalArgumentException("Invalid role provided");
         }
         user.setUsername(userDto.getUsername());
-        user.setPassword(userDto.getPassword());
+        user.setPictureUrl(userDto.getPictureUrl());
         UserDto savedUser = new UserDto(userRepository.save(user));
 
         return savedUser;
@@ -66,7 +66,7 @@ public class UserServiceImplementation implements UserService {
         }
 
         user.setUsername(userDto.getUsername());
-        user.setPassword(userDto.getPassword());
+        user.setPictureUrl(userDto.getPictureUrl());
         UserDto savedUser = new UserDto(userRepository.save(user));
         return savedUser;
     }
@@ -75,5 +75,12 @@ public class UserServiceImplementation implements UserService {
     
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
+    }
+
+    public UserDto getByGoogleId(String googleId) {
+        User user = userRepository.findByGoogleId(googleId)
+            .orElseThrow(() -> new EntityNotFoundException("No user found with google id: " + googleId));
+
+        return new UserDto(user);
     }
 }

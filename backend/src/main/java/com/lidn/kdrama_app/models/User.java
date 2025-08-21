@@ -18,10 +18,11 @@ public class User {
     @Id
     @GeneratedValue
     private Long id;
+    private String googleId;
     private Role role;
     private String username;
     private String email;
-    private String password;
+    private String pictureUrl;
 
     @OneToMany(mappedBy = "user")
     private List<Review> userReviews = new ArrayList<>();
@@ -31,15 +32,20 @@ public class User {
 
     public User() {}
 
-    public User(Role role, String username, String email, String password) {
+    public User(Role role, String googleId, String username, String email, String pictureUrl) {
+        this.googleId = googleId;
         this.role = role;
         this.username = username;
         this.email = email;
-        this.password = password;
+        this.pictureUrl = pictureUrl;
     }
 
     public Long getId() {
         return this.id;
+    }
+
+    public String getGoogleId() {
+        return this.googleId;
     }
 
     public Role getRole() {
@@ -54,8 +60,8 @@ public class User {
         return this.email;
     }
 
-    public String getPassword() {
-        return this.password;
+    public String getPictureUrl() {
+        return this.pictureUrl;
     }
 
     public List<Review> getUserReviews() {
@@ -74,8 +80,8 @@ public class User {
         this.username = username;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPictureUrl(String pictureUrl) {
+        this.pictureUrl = pictureUrl;
     }
 
     public void setUserReviews(List<Review> userReviews) {

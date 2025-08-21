@@ -12,7 +12,7 @@ public class UserDto {
     private String role;
     private String username;
     private String email;
-    private String password;
+    private String pictureUrl;
     // Contains drama ids for composite key
     private List<Long> dramaReviews;
 
@@ -22,7 +22,7 @@ public class UserDto {
         this.id = user.getId();
         this.username = user.getUsername();
         this.email = user.getEmail();
-        this.password = user.getPassword();
+        this.pictureUrl = user.getPictureUrl();
         this.dramaReviews = user.getUserReviews().stream()
             .map((review) -> review.getId().getDramaId())
             .collect(Collectors.toList());
@@ -44,8 +44,8 @@ public class UserDto {
         return this.email;
     }
 
-    public String getPassword() {
-        return this.password;
+    public String getPictureUrl() {
+        return this.pictureUrl;
     }
 
     public List<Long> getDramaReviews() {
@@ -71,8 +71,8 @@ public class UserDto {
         this.email = email;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPictureUrl(String pictureUrl) {
+        this.pictureUrl = pictureUrl;
     }
 
     public void setUserReviewIds(List<Long> dramaReviews) {
