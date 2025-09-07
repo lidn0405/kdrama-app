@@ -36,4 +36,4 @@ build/
 # App Properties
 application.properties
 security
-OAuth2Service.java
+CustomOAuth2Service.java

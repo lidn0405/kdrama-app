@@ -12,6 +12,7 @@ public class UserDto {
     private String role;
     private String username;
     private String email;
+    private String googleId;
     private String pictureUrl;
     // Contains drama ids for composite key
     private List<Long> dramaReviews;
@@ -22,11 +23,14 @@ public class UserDto {
         this.id = user.getId();
         this.username = user.getUsername();
         this.email = user.getEmail();
+        this.googleId = user.getGoogleId();
         this.pictureUrl = user.getPictureUrl();
         this.dramaReviews = user.getUserReviews().stream()
             .map((review) -> review.getId().getDramaId())
             .collect(Collectors.toList());
     }
+
+    // TODO: make entity swappers for dtos and entities
 
     public Long getId() {
         return this.id;
@@ -42,6 +46,10 @@ public class UserDto {
 
     public String getEmail() {
         return this.email;
+    }
+
+    public String getGoogleId() {
+        return this.googleId;
     }
 
     public String getPictureUrl() {
@@ -69,6 +77,10 @@ public class UserDto {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public void setGoogleId(String googleId) {
+        this.googleId = googleId;
     }
 
     public void setPictureUrl(String pictureUrl) {

@@ -72,8 +72,16 @@ public class User {
         this.id = id;
     }
 
+    public void setGoogleId(String id) {
+        this.googleId = id;
+    }
+
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public void setUsername(String username) {

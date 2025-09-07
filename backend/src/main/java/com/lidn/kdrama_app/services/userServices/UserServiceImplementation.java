@@ -1,6 +1,7 @@
 package com.lidn.kdrama_app.services.userServices;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
@@ -82,5 +83,35 @@ public class UserServiceImplementation implements UserService {
             .orElseThrow(() -> new EntityNotFoundException("No user found with google id: " + googleId));
 
         return new UserDto(user);
+    }
+
+    @Transactional
+    public UserDto processOAuthPostLogin(String googleId, String username, String email, String pictureUrl) {
+        Optional<User> userOptional = userRepository.findByEmail(email);
+
+        User user;
+        if (userOptional.isPresent()) {
+            // User exists, update their details
+            user = userOptional.get();
+            user.setUsername(username);
+            user.setPictureUrl(pictureUrl);
+            user.setGoogleId(googleId);
+            System.out.println("Updating existing user: " + email);
+        } else {
+            // New user, create a new record
+            User newUser = new User();
+            newUser.setRole(Role.USER);
+            newUser.setGoogleId(googleId);
+            newUser.setUsername(username);
+            newUser.setEmail(email);
+            newUser.setPictureUrl(pictureUrl);
+            user = newUser; // assign to user variable
+            System.out.println("Creating new user: " + email);
+        }
+        User savedUser = userRepository.save(user);
+        System.out.println("User successfully saved/updated in the database: " + email);
+        
+        // Use the new constructor for a clean, direct conversion.
+        return new UserDto(savedUser);
     }
 }
