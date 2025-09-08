@@ -2,15 +2,15 @@ package com.lidn.kdrama_app.config;
 
 import org.springframework.stereotype.Component;
 
+import com.lidn.kdrama_app.entity.Comment;
+import com.lidn.kdrama_app.entity.Drama;
+import com.lidn.kdrama_app.entity.User;
+import com.lidn.kdrama_app.entity.reviews.Review;
 import com.lidn.kdrama_app.enums.Role;
-import com.lidn.kdrama_app.models.Comment;
-import com.lidn.kdrama_app.models.Drama;
-import com.lidn.kdrama_app.models.User;
-import com.lidn.kdrama_app.models.reviews.Review;
-import com.lidn.kdrama_app.repositories.CommentRepository;
-import com.lidn.kdrama_app.repositories.DramaRepository;
-import com.lidn.kdrama_app.repositories.ReviewRepository;
-import com.lidn.kdrama_app.repositories.UserRepository;
+import com.lidn.kdrama_app.repository.CommentRepository;
+import com.lidn.kdrama_app.repository.DramaRepository;
+import com.lidn.kdrama_app.repository.ReviewRepository;
+import com.lidn.kdrama_app.repository.UserRepository;
 
 @Component
 public class DataInitializer implements org.springframework.boot.CommandLineRunner {

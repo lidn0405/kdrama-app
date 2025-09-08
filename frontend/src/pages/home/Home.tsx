@@ -1,4 +1,5 @@
 import { Link } from "react-router"
+import { getUsers } from "../../api/UserApi";
 
 function Home() {
 
@@ -26,8 +27,13 @@ function Home() {
             }
         } catch (error) {
             console.error('An error occurred during logout:', error);
+            }
         }
-        }
+
+    async function users() {
+        const users = await getUsers();
+        console.log(users);
+    }
 
     return (
         <div>
@@ -37,7 +43,9 @@ function Home() {
             <div>
                 <button onClick={handleLogout}>Logout</button>
             </div>
-            <button>GET USERS</button>
+            <div>
+                <button onClick={users}>GET USERS</button>
+            </div>
             <button>GET DRAMAS</button>
             <button>GET REVIEWS</button>
             <button>GET COMMENTS</button>

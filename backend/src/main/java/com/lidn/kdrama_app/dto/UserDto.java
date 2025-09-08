@@ -1,10 +1,7 @@
 package com.lidn.kdrama_app.dto;
 
 import java.util.List;
-import java.util.stream.Collectors;
-
 import com.lidn.kdrama_app.enums.Role;
-import com.lidn.kdrama_app.models.User;
 
 
 public class UserDto {
@@ -15,22 +12,10 @@ public class UserDto {
     private String googleId;
     private String pictureUrl;
     // Contains drama ids for composite key
-    private List<Long> dramaReviews;
+    private List<Long> reviewIds;
+    private List<Long> commentIds;
 
     public UserDto() {}
-
-    public UserDto(User user) {
-        this.id = user.getId();
-        this.username = user.getUsername();
-        this.email = user.getEmail();
-        this.googleId = user.getGoogleId();
-        this.pictureUrl = user.getPictureUrl();
-        this.dramaReviews = user.getUserReviews().stream()
-            .map((review) -> review.getId().getDramaId())
-            .collect(Collectors.toList());
-    }
-
-    // TODO: make entity swappers for dtos and entities
 
     public Long getId() {
         return this.id;
@@ -56,8 +41,16 @@ public class UserDto {
         return this.pictureUrl;
     }
 
-    public List<Long> getDramaReviews() {
-        return this.dramaReviews;
+    public List<Long> getReviews() {
+        return this.reviewIds;
+    }
+
+    public List<Long> getComments() {
+        return this.commentIds;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public void setRole(String role) {
@@ -87,8 +80,12 @@ public class UserDto {
         this.pictureUrl = pictureUrl;
     }
 
-    public void setUserReviewIds(List<Long> dramaReviews) {
-        this.dramaReviews = dramaReviews;
+    public void setReviews(List<Long> reviewIds) {
+        this.reviewIds = reviewIds;
+    }
+
+    public void setComments(List<Long> commentIds) {
+        this.commentIds = commentIds;
     }
 
 }
