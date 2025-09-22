@@ -13,6 +13,7 @@ import com.lidn.kdrama_app.entity.reviews.ReviewKey;
 import com.lidn.kdrama_app.repository.DramaRepository;
 import com.lidn.kdrama_app.repository.ReviewRepository;
 import com.lidn.kdrama_app.repository.UserRepository;
+import com.lidn.kdrama_app.mapper.ReviewMapper;
 
 import jakarta.persistence.EntityNotFoundException;
 
@@ -33,7 +34,7 @@ public class ReviewServiceImplementation implements ReviewService{
     public List<ReviewDto> getReviews() {
         List<Review> reviews = reviewRepository.findAll();
         return reviews.stream()
-            .map((review) -> new ReviewDto(review))
+            .map((review) -> ReviewMapper.toDto(review))
             .collect(Collectors.toList());
     }
 
@@ -43,7 +44,7 @@ public class ReviewServiceImplementation implements ReviewService{
         Review review = reviewRepository.findById(id)
             .orElseThrow(() -> new EntityNotFoundException("Review not found with id: " + id));
 
-        return new ReviewDto(review);
+        return ReviewMapper.toDto(review);
     }
 
     @Override
@@ -55,7 +56,7 @@ public class ReviewServiceImplementation implements ReviewService{
         review.setReviewText(reviewDto.getReviewText());
         review.setRating(review.getRating());
         Review savedReview = reviewRepository.save(review);
-        return new ReviewDto(savedReview);
+        return ReviewMapper.toDto(savedReview);
     }
 
     @Override
@@ -72,7 +73,7 @@ public class ReviewServiceImplementation implements ReviewService{
         newReview.setDrama(drama);
         
         Review savedReview = reviewRepository.save(newReview);
-        return new ReviewDto(savedReview);
+        return ReviewMapper.toDto(savedReview);
     }
 
     @Override

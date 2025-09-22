@@ -13,6 +13,7 @@ import com.lidn.kdrama_app.entity.reviews.ReviewKey;
 import com.lidn.kdrama_app.repository.CommentRepository;
 import com.lidn.kdrama_app.repository.ReviewRepository;
 import com.lidn.kdrama_app.repository.UserRepository;
+import com.lidn.kdrama_app.mapper.CommentMapper;
 
 import jakarta.persistence.EntityNotFoundException;
 
@@ -32,7 +33,7 @@ public class CommentServiceImplementation implements CommentService{
     @Override
     public List<CommentDto> getComments() {
         List<CommentDto> commentDtos = commentRepository.findAll().stream()
-            .map((comment) -> new CommentDto(comment))
+            .map((comment) -> CommentMapper.toDto(comment))
             .collect(Collectors.toList());
         
         return commentDtos;
@@ -43,7 +44,7 @@ public class CommentServiceImplementation implements CommentService{
         Comment comment = commentRepository.findById(id)
             .orElseThrow(() -> new EntityNotFoundException("Entity not found with id: " + id));
 
-        return new CommentDto(comment);
+        return CommentMapper.toDto(comment);
     }
 
     @Override
@@ -54,7 +55,7 @@ public class CommentServiceImplementation implements CommentService{
         comment.setCommentText(commentDto.getCommentText());
         comment.setVotes(commentDto.getVotes());
         Comment savedComment = commentRepository.save(comment);
-        return new CommentDto(savedComment);
+        return CommentMapper.toDto(savedComment);
     }
 
     @Override
@@ -72,7 +73,7 @@ public class CommentServiceImplementation implements CommentService{
         newComment.setVotes(0);
 
         Comment savedComment = commentRepository.save(newComment);
-        return new CommentDto(savedComment);
+        return CommentMapper.toDto(savedComment);
     }
 
     @Override
