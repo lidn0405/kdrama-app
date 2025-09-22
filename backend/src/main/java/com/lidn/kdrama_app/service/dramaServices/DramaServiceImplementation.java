@@ -11,6 +11,7 @@ import com.lidn.kdrama_app.entity.reviews.Review;
 import com.lidn.kdrama_app.entity.reviews.ReviewKey;
 import com.lidn.kdrama_app.repository.DramaRepository;
 import com.lidn.kdrama_app.repository.ReviewRepository;
+import com.lidn.kdrama_app.mapper.DramaMapper;
 
 import jakarta.persistence.EntityNotFoundException;
 
@@ -28,7 +29,7 @@ public class DramaServiceImplementation implements DramaService {
     public List<DramaDto> getDramas() {
         List<Drama> dramas = dramaRepository.findAll();
         return dramas.stream()
-                .map((drama) -> new DramaDto(drama))
+                .map((drama) -> DramaMapper.toDto(drama))
                 .collect(Collectors.toList());
     }
 
@@ -37,7 +38,7 @@ public class DramaServiceImplementation implements DramaService {
         Drama drama = dramaRepository.findById(id)
             .orElseThrow(() -> new EntityNotFoundException("Drama not found with id: " + id));
         
-        return new DramaDto(drama);
+        return DramaMapper.toDto(drama);
     }
 
     @Override
@@ -48,7 +49,7 @@ public class DramaServiceImplementation implements DramaService {
         drama.setName(dramaDto.getName());
         drama.setDescription(dramaDto.getDescription());
         Drama savedDrama = dramaRepository.save(drama);
-        return new DramaDto(savedDrama);
+        return DramaMapper.toDto(savedDrama);
     }
 
     // TODO: Create update service to update drama's reviews
@@ -59,7 +60,7 @@ public class DramaServiceImplementation implements DramaService {
         newDrama.setName(dramaDto.getName());
         newDrama.setDescription(dramaDto.getDescription());
         Drama savedDrama = dramaRepository.save(newDrama);
-        return new DramaDto(savedDrama);
+        return DramaMapper.toDto(savedDrama);
     }
 
     @Override

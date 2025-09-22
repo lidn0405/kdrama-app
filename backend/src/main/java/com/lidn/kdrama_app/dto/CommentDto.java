@@ -17,14 +17,4 @@ public class CommentDto {
     private Long parentId;
     private String commentText;
     private int votes;
-
-    public CommentDto(Comment comment) {
-        this.id = comment.getId();
-        this.userId = comment.getUser().getId();
-        this.reviewUserId = comment.getReview().getId().getUserId();
-        this.reviewDramaId = comment.getReview().getId().getDramaId();
-        this.parentId = comment.getParentId();
-        this.commentText = comment.getCommentText();
-        this.votes = comment.getVotes();
-    }
 }

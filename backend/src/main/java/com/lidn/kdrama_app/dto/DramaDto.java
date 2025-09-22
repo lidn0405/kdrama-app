@@ -15,14 +15,6 @@ public class DramaDto {
     private String name;
     private String description;
     // Contains user ids for composite key
-    private List<Long> userReviews;
+    private List<Long> userIdReviews;
 
-    public DramaDto(Drama drama) {
-        this.id = drama.getId();
-        this.name = drama.getName();
-        this.description = drama.getDescription();
-        this.userReviews = drama.getDramaReviews().stream()
-            .map((review) -> review.getId().getUserId())
-            .collect(Collectors.toList());
-    }
 }

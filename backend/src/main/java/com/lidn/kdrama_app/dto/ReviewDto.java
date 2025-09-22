@@ -12,11 +12,4 @@ public class ReviewDto {
     private Long drama_id;
     private String reviewText;
     private int rating;
-
-    public ReviewDto(Review review) {
-        this.user_id = review.getUser().getId();
-        this.drama_id = review.getDrama().getId();
-        this.reviewText = review.getReviewText();
-        this.rating = review.getRating();
-    }
 }

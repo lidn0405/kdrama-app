@@ -31,6 +31,7 @@ public class UserMapper {
         return userDto;
     }
 
+    // Should not be used really 
     public static User toEntity(UserDto userDto) {
         User newUser = new User();
 
