@@ -21,9 +21,11 @@ public class Comment {
     @Id
     @GeneratedValue
     private Long id;
+    // User who made comment
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+    // Initial review commented on
     @ManyToOne
     @JoinColumns({
         @JoinColumn(name = "review_user_id", referencedColumnName = "user_id"),
@@ -31,6 +33,7 @@ public class Comment {
     })
     @JsonBackReference
     private Review review;
+    // TODO: USE THE PARENT OBJECT ITSELF
     private Long parentId;
     private String commentText;
     private int votes;
