@@ -1,6 +1,6 @@
 const url = "/api/user"
 
-async function getUsers(jwtToken: String) {
+async function getUsers(jwtToken: string) {
     try {
         const res = await fetch(`${url}`, {
             method: 'GET',
@@ -12,14 +12,10 @@ async function getUsers(jwtToken: String) {
         if (!res.ok) {
             throw new Error(`Response status: ${res.status}`);
         }
-        const json = res.json();
+        const json = await res.json();
         return json;
     } catch (error) {
-        if (error instanceof Error) {
-            console.log(error.message);
-        } else {
-            console.log(String(error));
-        }
+        throw error;
     }
 }
 

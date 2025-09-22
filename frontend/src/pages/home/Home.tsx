@@ -1,23 +1,29 @@
 import { Link } from "react-router"
-import { getUsers } from "../../api/UserApi";
+import { getUsers } from "../../api/userApi";
+import { useEffect } from "react";
 
 function Home() {
+
+    useEffect(() => {
+        
+    }, [])
 
     async function handleLogout() {
         try {
             // 1. Call the backend logout endpoint
+            const token = localStorage.getItem('authToken')
             const response = await fetch('http://localhost:5173/api/logout', {
             method: 'POST',
             headers: {
                 // If you are using Bearer token authentication for other requests,
                 // you might need to include the Authorization header here as well.
-                'Authorization': `Bearer ${localStorage.getItem('token')}` 
+                'Authorization': `Bearer ${token}` 
             }
             });
 
             if (response.ok) {
             // 2. Clear the token from local storage
-            localStorage.removeItem('token');
+            localStorage.removeItem('authToken');
 
             // 3. Redirect the user to the login page or home page
             window.location.href = '/login'; 
@@ -31,8 +37,13 @@ function Home() {
         }
 
     async function users() {
-        const users = await getUsers();
-        console.log(users);
+        const token = localStorage.getItem('authToken'); // Get token from storage
+        if (token) {
+            const users = await getUsers(token);
+            console.log("Fetched users:", users);
+        } else {
+            console.error("No token found. Please log in.");
+        }
     }
 
     return (
