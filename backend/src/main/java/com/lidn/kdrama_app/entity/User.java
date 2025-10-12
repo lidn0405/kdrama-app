@@ -1,7 +1,13 @@
 package com.lidn.kdrama_app.entity;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import com.lidn.kdrama_app.entity.reviews.Review;
 import com.lidn.kdrama_app.enums.Role;
@@ -14,7 +20,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "app_user")
-public class User {
+public class User implements UserDetails{
     @Id
     @GeneratedValue
     private Long id;
@@ -102,5 +108,15 @@ public class User {
 
     public void setUserComments(List<Comment> userComments) {
         this.userComments = userComments;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + this.role));
+    }
+
+    @Override
+    public String getPassword() {
+        return "";
     }
 }

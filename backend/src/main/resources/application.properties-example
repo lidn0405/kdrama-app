@@ -15,4 +15,4 @@ spring.security.oauth2.client.registration.google.redirect-uri=
 spring.security.oauth2.resourceserver.jwt.issuer-uri=https://accounts.google.com
 
 app.jwt.secret=
-testing
+app.jwt.expiration=3600000

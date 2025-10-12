@@ -4,7 +4,6 @@ import java.util.stream.Collectors;
 
 import com.lidn.kdrama_app.dto.DramaDto;
 import com.lidn.kdrama_app.entity.Drama;
-import com.lidn.kdrama_app.entity.reviews.Review;
 
 public class DramaMapper {
     public static DramaDto toDto(Drama drama) {

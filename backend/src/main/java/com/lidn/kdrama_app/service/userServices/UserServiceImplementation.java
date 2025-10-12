@@ -86,8 +86,9 @@ public class UserServiceImplementation implements UserService {
         return UserMapper.toDto(user);
     }
 
+    // Adds or updates user using oauth2 info
     @Transactional
-    public UserDto processOAuthPostLogin(String googleId, String username, String email, String pictureUrl) {
+    public UserDto processUserFromAuth(String googleId, String username, String email, String pictureUrl) {
         Optional<User> userOptional = userRepository.findByEmail(email);
 
         User user;
