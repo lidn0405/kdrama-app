@@ -11,5 +11,5 @@ public interface UserService {
     UserDto updateUser(Long id, UserDto userDto);
     void deleteUser(Long id);
     UserDto getByGoogleId(String googleId);
-    UserDto processOAuthPostLogin(String googleId, String username, String email, String pictureUrl);
+    UserDto processUserFromAuth(String googleId, String username, String email, String pictureUrl);
 }

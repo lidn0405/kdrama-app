@@ -5,7 +5,6 @@ import java.util.stream.Collectors;
 
 import com.lidn.kdrama_app.dto.UserDto;
 import com.lidn.kdrama_app.entity.User;
-import com.lidn.kdrama_app.entity.reviews.Review;
 import com.lidn.kdrama_app.enums.Role;
 
 public class UserMapper {

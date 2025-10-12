@@ -1,7 +1,5 @@
 package com.lidn.kdrama_app.dto;
 
-import com.lidn.kdrama_app.entity.reviews.Review;
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
