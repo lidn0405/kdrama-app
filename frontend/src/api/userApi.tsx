@@ -2,7 +2,7 @@ const url = "/api/user"
 
 async function getUsers(jwtToken: string) {
     try {
-        const res = await fetch(`${url}`, {
+        const res = await fetch(`${url}/`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${jwtToken}`,
