@@ -1,7 +1,7 @@
 function LoginPage() {
     return (
         <div>
-            <a href="/api/oauth2/authorization/google">
+            <a href="http://localhost:8080/oauth2/authorization/google">
                 Sign In With Google
             </a>
         </div>
