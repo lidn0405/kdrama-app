@@ -1,4 +1,4 @@
-const url = "/api/user"
+const url = "/api/users"
 
 async function getUsers(jwtToken: string) {
     try {

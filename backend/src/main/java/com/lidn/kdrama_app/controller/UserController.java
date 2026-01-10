@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api/users")
 public class UserController {
     private UserService userService;
 
@@ -52,6 +52,6 @@ public class UserController {
         userService.deleteUser(id);
     }
     
-    
+    // TODO: Create a logout controller to make cookie delete itself
     
 }
