@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController
-@RequestMapping("/api/drama")
+@RequestMapping("/api/dramas")
 public class DramaController {
     private DramaService dramaService;
 

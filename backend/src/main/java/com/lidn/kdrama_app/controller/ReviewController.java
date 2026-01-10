@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 
 @RestController
-@RequestMapping("/api/review")
+@RequestMapping("/api/reviews")
 public class ReviewController {
     ReviewService reviewService;
 
