@@ -35,7 +35,7 @@ public class UserMapper {
         User newUser = new User();
 
         newUser.setGoogleId(userDto.getGoogleId());
-        newUser.setRole(Role.USER);
+        newUser.setRole(Role.ROLE_USER);
         newUser.setUsername(userDto.getUsername());
         newUser.setEmail(userDto.getEmail());
         newUser.setPictureUrl(userDto.getPictureUrl());

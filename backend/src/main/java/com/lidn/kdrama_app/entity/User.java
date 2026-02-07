@@ -13,6 +13,8 @@ import com.lidn.kdrama_app.entity.reviews.Review;
 import com.lidn.kdrama_app.enums.Role;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
@@ -25,6 +27,7 @@ public class User implements UserDetails{
     @GeneratedValue
     private Long id;
     private String googleId;
+    @Enumerated(EnumType.STRING)
     private Role role;
     private String username;
     private String email;
@@ -112,7 +115,7 @@ public class User implements UserDetails{
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + this.role));
+        return List.of(new SimpleGrantedAuthority(role.name()));
     }
 
     @Override

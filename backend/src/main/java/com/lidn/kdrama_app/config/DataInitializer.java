@@ -30,7 +30,7 @@ public class DataInitializer implements org.springframework.boot.CommandLineRunn
     public void run(String... args) throws Exception{
         User user1 = null;
         if (userRepository.count() == 0) {
-            user1 = new User(Role.USER, "", "User1", "user1@gmail.com", "userahaha");
+            user1 = new User(Role.ROLE_USER, "", "User1", "user1@gmail.com", "userahaha");
             userRepository.save(user1);
         }
         Drama drama1 = null;

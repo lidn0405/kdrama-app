@@ -1,18 +1,23 @@
 server.port=8080
-
 spring.application.name=backend
-spring.jpa.hibernate.ddl-auto=update
-spring.datasource.url=jdbc:postgresql://localhost:5432/mydatabase
-spring.datasource.username=
-spring.datasource.password=
-spring.datasource.driver-class-name=com.postgresql.cj.jdbc.Driver
-spring.jpa.show-sql: true
 
-spring.security.oauth2.client.registration.google.client-id=
-spring.security.oauth2.client.registration.google.client-secret=
-spring.security.oauth2.client.registration.google.scope=
-spring.security.oauth2.client.registration.google.redirect-uri=
+spring.config.import=optional:file:../.env[.properties]
+
+spring.jpa.hibernate.ddl-auto=update
+spring.datasource.url=${SPRING_DATASOURCE_URL}
+spring.datasource.username=${SPRING_DATASOURCE_USERNAME}
+spring.datasource.password=${SPRING_DATASOURCE_PASSWORD}
+spring.datasource.driver-class-name=org.postgresql.Driver
+spring.jpa.show-sql= true
+
+spring.security.oauth2.client.registration.google.client-id=${GOOGLE_CLIENT_ID}
+spring.security.oauth2.client.registration.google.client-secret=${GOOGLE_CLIENT_SECRET}
+spring.security.oauth2.client.registration.google.scope=openid, profile, email
+spring.security.oauth2.client.registration.google.redirect-uri=http://localhost:8080/login/oauth2/code/google
 spring.security.oauth2.resourceserver.jwt.issuer-uri=https://accounts.google.com
 
-app.jwt.secret=
+management.endpoint.health.show-details=when-authorized
+
+app.jwt.secret=${APP_JWT_SECRET}
+# An hour
 app.jwt.expiration=3600000

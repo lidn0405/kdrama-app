@@ -100,7 +100,7 @@ public class UserServiceImplementation implements UserService {
             System.out.println("Updating existing user: " + email);
         } else {
             User newUser = new User();
-            newUser.setRole(Role.USER);
+            newUser.setRole(Role.ROLE_USER);
             newUser.setGoogleId(googleId);
             newUser.setUsername(username);
             newUser.setEmail(email);
@@ -108,7 +108,7 @@ public class UserServiceImplementation implements UserService {
             user = newUser;
             System.out.println("Creating new user: " + email);
         }
-        User savedUser = userRepository.save(user);
+        User savedUser = userRepository.saveAndFlush(user);
         System.out.println("User successfully saved/updated in the database: " + email);
         
         return UserMapper.toDto(savedUser);
